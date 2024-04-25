@@ -4,7 +4,7 @@ public class Matrix3x3InverseCalculator {
         //Leer la matriz, llamar el metodo, mostrar el resultado
         int [][] matriz = new int[3][3];
     }
-    public static double[][] Inversa(int[][]matriz){
+    public static double[][] CalcularInversa(int[][]matriz){
         double[][]result=new double[3][3];
         int[][]adjunta=new int[3][3];
         adjunta=Adjunta(matriz);
