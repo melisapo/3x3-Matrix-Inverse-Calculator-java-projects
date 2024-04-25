@@ -38,8 +38,12 @@ public class Matrix3x3InverseCalculator {
         int result=submatriz[0]*submatriz[3]-submatriz[1]*submatriz[2];
         return result;
     }
-    public static int Determinante(int[][]matriz){
-        //Kevin
-        //El determinante de la matriz 3x3
-    }
+    public static int Determinante(int matriz[][]){
+        int determinante = 0;
+        
+        for(int j = 0; j < 3; j++){
+           determinante += matriz[0][j] * CalcularCofactor(matriz, 0, j);
+        }
+        return determinante;
+     }
 }
