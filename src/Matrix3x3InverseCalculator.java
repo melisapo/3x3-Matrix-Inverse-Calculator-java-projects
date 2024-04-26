@@ -3,23 +3,29 @@ import java.util.Scanner;
 public class Matrix3x3InverseCalculator  {
     public static void main(String[] args) throws Exception {
         int determinante;
-        double inversa[][];
+        double inversa[][] = new double[3][3];
         Scanner in = new Scanner(System.in);
         int matriz[][] = new int[3][3];
        
-        for(int i = 0; i< 3; i++ ){
-            for(int j = 0;j<3;j++){
+        for(int i = 0; i < 3; i++ ){
+            for(int j = 0; j < 3; j++){
                System.out.println("Introduzca el elemento de la fila " + (i+1) + ",  columna " + (j+1));
                 matriz[i][j] = in.nextInt();    
             }
         }
         determinante = Determinante(matriz);
+        inversa = CalcularInversa(matriz);
         if(determinante == 0){
             System.out.println("El determinante de la matriz es 0 por lo tanto no tiene inversa");
         }else{
-            inversa = CalcularInversa(matriz);
-            System.out.println(inversa);
+            for(int i = 0; i <3;i++){
+                for(int j = 0; j <3;j++){
+                    System.out.println(inversa[i][j]);
+                }
+            }
+        
         }
+        
     }
  
      public static double[][] CalcularInversa(int[][]matriz){
