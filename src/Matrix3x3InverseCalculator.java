@@ -21,7 +21,7 @@ public class Matrix3x3InverseCalculator  {
             System.out.println(inversa);
         }
     }
- }
+ 
      public static double[][] CalcularInversa(int[][]matriz){
         double[][]result=new double[3][3];
         int[][]adjunta=new int[3][3];
@@ -71,3 +71,4 @@ public static int Determinante(int matriz[][]){
     }
     return determinante;
  }
+}
