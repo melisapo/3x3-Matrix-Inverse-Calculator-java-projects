@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Matrix3x3InverseCalculator  {
     public static void main(String[] args) throws Exception {
-        int determinante;
+        double determinante;
         double inversa[][] = new double[3][3];
         Scanner in = new Scanner(System.in);
-        int matriz[][] = new int[3][3];
+        double matriz[][] = new double[3][3];
         for(int i = 0; i < 3; i++ ){
             for(int j = 0; j < 3; j++){
                System.out.println("Introduzca el elemento de la fila " + (i+1) + ",  columna " + (j+1));
@@ -13,61 +13,64 @@ public class Matrix3x3InverseCalculator  {
             }
         }
         in.close();
-        determinante = Determinante(matriz);
-        inversa = CalcularInversa(matriz);
+        determinante = calcularDeterminante(matriz);
         if(determinante == 0){
             System.out.println("El determinante de la matriz es 0 por lo tanto no tiene inversa");
         }else{
+            inversa = calcularInversa(matriz);
+            System.out.println("La inversa de la matriz es: ");
             for(int i = 0; i <3;i++){
                 for(int j = 0; j <3;j++){
-                    System.out.println(inversa[i][j]);
+                    System.out.print(inversa[i][j]+" ");
                 }
+                System.out.println(" ");
             }
         }
     }
-    public static double[][] CalcularInversa(int[][]matriz){
+    public static double[][] calcularInversa(double[][]matriz){
         double[][]result=new double[3][3];
-        int[][]adjunta=new int[3][3];
-        adjunta=Adjunta(matriz);
+        double[][]adjunta=new double[3][3];
+        adjunta=calcularAdjunta(matriz);
+        double determinante = calcularDeterminante(matriz);
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
-                result[i][j]=adjunta[i][j]/Determinante(matriz);
+                result[i][j]=adjunta[i][j]/determinante;
             }
         }
         return result;
     }
-    public static int[][] Adjunta(int[][]matriz){
-        int[][] adjunta = new int[3][3];
+    public static double[][] calcularAdjunta(double[][]matriz){
+        double[][] adjunta = new double[3][3];
         for(int i=0;i<3;i++){
             for(int j=0;j<3;j++){
-                adjunta[j][i]= CalcularCofactor(matriz,i,j);
+                adjunta[j][i]= calcularCofactor(matriz,i,j);
             }
         }
         return adjunta;
     }
-    public static int CalcularCofactor(int[][]matriz, int i, int j){
-        int result=(int)Math.pow(-1, i+j);
-        result*=CalcularMayor(matriz, i, j);
+    public static double calcularCofactor(double[][]matriz, int i, int j){
+        double result=Math.pow(-1, i+j);
+        result*=calcularMayor(matriz, i, j);
         return result;
     }
-    public static int CalcularMayor(int[][]matriz, int a,int b){
-        int[]submatriz=new int[4];
+    public static double calcularMayor(double[][]matriz, int a,int b){
+        double[]submatriz=new double[4];
         int index=0;
         for(int i=0;i<3;i++){
-            for(int j=0;j<3;i++){
+            for(int j=0;j<3;j++){
                 if(i!=a && j!=b){
                     submatriz[index]=matriz[i][j];
                     index++;
                 }
             }
         }
-        int result=submatriz[0]*submatriz[3]-submatriz[1]*submatriz[2];
+        double result=submatriz[0]*submatriz[3]-submatriz[1]*submatriz[2];
         return result;
     }
-    public static int Determinante(int matriz[][]){
-        int determinante = 0;
+    public static double calcularDeterminante(double matriz[][]){
+        double determinante = 0;
         for(int j = 0; j < 3; j++){
-            determinante += matriz[0][j] * CalcularCofactor(matriz, 0, j);
+            determinante += matriz[0][j] * calcularCofactor(matriz, 0, j);
         }
         return determinante;
     }
