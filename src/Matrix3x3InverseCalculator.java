@@ -39,15 +39,7 @@ public class Matrix3x3InverseCalculator  {
         }
         return result;
     }
-    public static int[][] Adjunta(int[][]matriz){
-        int[][] adjunta = new int[3][3];
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                adjunta[j][i]= CalcularCofactor(matriz,i,j);
-            }
-        }
-        return adjunta;
-    }
+    
     public static int CalcularCofactor(int[][]matriz, int i, int j){
         int result=(int)Math.pow(-1, i+j);
         result*=CalcularMayor(matriz, i, j);
