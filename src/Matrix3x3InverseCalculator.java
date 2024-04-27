@@ -6,13 +6,13 @@ public class Matrix3x3InverseCalculator  {
         double inversa[][] = new double[3][3];
         Scanner in = new Scanner(System.in);
         int matriz[][] = new int[3][3];
-       
         for(int i = 0; i < 3; i++ ){
             for(int j = 0; j < 3; j++){
                System.out.println("Introduzca el elemento de la fila " + (i+1) + ",  columna " + (j+1));
                 matriz[i][j] = in.nextInt();    
             }
         }
+        in.close();
         determinante = Determinante(matriz);
         inversa = CalcularInversa(matriz);
         if(determinante == 0){
@@ -23,12 +23,9 @@ public class Matrix3x3InverseCalculator  {
                     System.out.println(inversa[i][j]);
                 }
             }
-        
         }
-        
     }
- 
-     public static double[][] CalcularInversa(int[][]matriz){
+    public static double[][] CalcularInversa(int[][]matriz){
         double[][]result=new double[3][3];
         int[][]adjunta=new int[3][3];
         adjunta=Adjunta(matriz);
@@ -67,14 +64,11 @@ public class Matrix3x3InverseCalculator  {
         int result=submatriz[0]*submatriz[3]-submatriz[1]*submatriz[2];
         return result;
     }
-    
-
-public static int Determinante(int matriz[][]){
-    int determinante = 0;
-    
-    for(int j = 0; j < 3; j++){
-       determinante += matriz[0][j] * CalcularCofactor(matriz, 0, j);
+    public static int Determinante(int matriz[][]){
+        int determinante = 0;
+        for(int j = 0; j < 3; j++){
+            determinante += matriz[0][j] * CalcularCofactor(matriz, 0, j);
+        }
+        return determinante;
     }
-    return determinante;
- }
 }
